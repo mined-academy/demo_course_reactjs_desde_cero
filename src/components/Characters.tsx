@@ -1,4 +1,12 @@
-const Characters = ({ characters, setCharacters }: any) => {
+type Character = {
+    image: string;
+    name: string;
+    status: 'Alive' | 'Dead';
+    episode: Array<string>;
+    species: string;
+};
+
+const Characters = ({ characters, setCharacters }: {characters: Character[], setCharacters: any}) => {
     const resetCharacters = () => {
         setCharacters(null);
     };
@@ -8,7 +16,7 @@ const Characters = ({ characters, setCharacters }: any) => {
             <h1>Personajes</h1>
             <span className="back-home" onClick={resetCharacters}>Volver a Home</span>
             <div className="container-characters">
-                {characters.map((character: any, index: string) => (
+                {characters.map((character: Character, index: number) => (
                     <div className="character-container" key={index}>
                         <div>
                             <img src={character.image} alt={character.name} />
