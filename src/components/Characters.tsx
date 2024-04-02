@@ -1,15 +1,44 @@
-const Characters = ({ characters }: any) => {
+const Characters = ({ characters, setCharacters }: any) => {
+    const resetCharacters = () => {
+        setCharacters(null);
+    };
+
     return (
         <div className="characters">
             <h1>Personajes</h1>
-            <span>Volver a Home</span>
+            <span className="back-home" onClick={resetCharacters}>Volver a Home</span>
             <div className="container-characters">
                 {characters.map((character: any, index: string) => (
                     <div className="character-container" key={index}>
-                        <img src={character.image} alt={character.name} />
+                        <div>
+                            <img src={character.image} alt={character.name} />
+                        </div>
+                        <div>
+                            <h3>{character.name}</h3>
+                            <h6>
+                                {character.status === "Alive" ? (
+                                    <>
+                                        <span className="alive"/>Alive
+                                    </>
+                                ) : (
+                                    <>
+                                        <span className="dead" />Dead
+                                    </>
+                                )}
+                            </h6>
+                            <p>
+                                <span className="text-grey">Episodios:</span>
+                                <span>{character.episode.length}</span>
+                            </p>
+                            <p>
+                                <span className="text-grey">Especie:</span>
+                                <span>{character.species}</span>
+                            </p>
+                        </div>
                     </div>
                 ))}
             </div>
+            <span className="back-home" onClick={resetCharacters}>Volver a Home</span>
         </div>
     );
 };
