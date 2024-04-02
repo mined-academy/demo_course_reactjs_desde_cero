@@ -1,20 +1,34 @@
-import image from './assets/rick-morty.png';
-// import { useState } from 'react';
-import './App.css';
+import image from "./assets/rick-morty.png";
+import Characters from "./components/Characters";
+import { useState } from "react";
+import "./App.css";
 
 function App() {
-    const callAPI = () => {
-        console.log('Clicking');
-    }
+    const [characters, setCharacters] = useState(null);
+    const callAPI = async () => {
+        const res = await fetch("https://rickandmortyapi.com/api/character");
+        const json = await res.json();
+        setCharacters(json.results);
+    };
 
     return (
-        <div className='App'>
-            <header className='App-header'>
+        <div className="App">
+            <header className="App-header">
                 <h1 className="title">Rick & Morty </h1>
-                <img src={image} alt='Rick \& Morty' className='img-home'/>
-                <button onClick={callAPI} className='btn-search'>
-                    Buscar Personajes
-                </button>
+                {characters ? (
+                    <Characters characters={characters}/>
+                ) : (
+                    <>
+                        <img
+                            src={image}
+                            alt="Rick \& Morty"
+                            className="img-home"
+                        />
+                        <button onClick={callAPI} className="btn-search">
+                            Buscar Personajes
+                        </button>
+                    </>
+                )}
             </header>
         </div>
     );
