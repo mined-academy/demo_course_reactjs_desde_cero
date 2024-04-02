@@ -1,14 +1,23 @@
+import image from './assets/rick-morty.png';
 // import { useState } from 'react';
-// import './App.css';
+import './App.css';
 
 function App() {
-  // const [count, setCount] = useState(0)
+    const callAPI = () => {
+        console.log('Clicking');
+    }
 
-  return (
-    <>
-      <h1>Vite + React</h1>
-    </>
-  )
+    return (
+        <div className='App'>
+            <header className='App-header'>
+                <h1 className="title">Rick & Morty </h1>
+                <img src={image} alt='Rick \& Morty' className='img-home'/>
+                <button onClick={callAPI} className='btn-search'>
+                    Buscar Personajes
+                </button>
+            </header>
+        </div>
+    );
 }
 
-export default App
+export default App;
